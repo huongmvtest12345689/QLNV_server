@@ -17,11 +17,9 @@ import java.util.List;
 public class UserRestApi {
     @Autowired
     private UserService userService;
-    private static final Logger logger = LoggerFactory.getLogger(UserRestApi.class);
     @GetMapping("")
     public ResourceResponse getUser() {
         List<User> data = userService.findAllUsers();
-        logger.debug("Hello from Logback {}", data);
         return new ResourceResponse(userService.findAllUsers());
     }
 }
