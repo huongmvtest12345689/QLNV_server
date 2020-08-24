@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 public class ResourceResponse extends ResponseEntity<ResourceResponse.Payload> {
 
     public ResourceResponse(Object object) {
@@ -30,6 +32,5 @@ public class ResourceResponse extends ResponseEntity<ResourceResponse.Payload> {
         private Integer status;
         private String message;
         private Object object;
-
     }
 }
