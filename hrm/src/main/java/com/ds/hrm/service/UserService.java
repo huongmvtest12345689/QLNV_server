@@ -1,9 +1,7 @@
-package com.dimageshare.hrm.service;
+package com.ds.hrm.service;
 
-import com.dimageshare.hrm.entity.User;
-import com.dimageshare.hrm.exception.NoDataFoundException;
-import com.dimageshare.hrm.exception.UserNotFoundException;
-import com.dimageshare.hrm.repository.UserRepository;
+import com.ds.hrm.entity.User;
+import com.ds.hrm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

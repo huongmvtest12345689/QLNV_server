@@ -16,7 +16,7 @@
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
-                ../var/%d{dd-MM-yyyy}/log_%d{dd-MM-yyyy}.log
+                ../../../var/%d{dd-MM-yyyy}/log_%d{dd-MM-yyyy}.log
             </fileNamePattern>
             <maxHistory>50</maxHistory>
             <totalSizeCap>100MB</totalSizeCap>

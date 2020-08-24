@@ -1,4 +1,4 @@
-package com.dimageshare.hrm.entity;
+package com.ds.hrm.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

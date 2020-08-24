@@ -1,12 +1,10 @@
-package com.dimageshare.hrm.restApi;
+package com.ds.hrm.restApi;
 
-import com.dimageshare.hrm.base.ResourceResponse;
-import com.dimageshare.hrm.entity.User;
-import com.dimageshare.hrm.exception.NoDataFoundException;
-import com.dimageshare.hrm.exception.UserNotFoundException;
-import com.dimageshare.hrm.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.ds.hrm.base.ResourceResponse;
+import com.ds.hrm.entity.User;
+import com.ds.hrm.exception.NoDataFoundException;
+import com.ds.hrm.exception.UserNotFoundException;
+import com.ds.hrm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +18,7 @@ import java.util.List;
 public class UserRestApi {
     @Autowired
     private UserService userService;
-    @GetMapping("")ed
+    @GetMapping("")
     public ResourceResponse getUser() {
         List<User> data = userService.findAllUsers();
         if (data.isEmpty()) {
@@ -33,7 +31,6 @@ public class UserRestApi {
         User data = userService.findById(id);
         if (data == null) {
             throw new UserNotFoundException(id);
-
         }
         return new ResourceResponse(data);
     }

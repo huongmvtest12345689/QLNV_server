@@ -1,4 +1,4 @@
-package com.dimageshare.hrm.exception;
+package com.ds.hrm.exception;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(Integer id) {

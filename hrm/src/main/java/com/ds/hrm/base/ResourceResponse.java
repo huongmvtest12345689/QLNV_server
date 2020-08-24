@@ -1,12 +1,10 @@
-package com.dimageshare.hrm.base;
+package com.ds.hrm.base;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Map;
 
 public class ResourceResponse extends ResponseEntity<ResourceResponse.Payload> {
 

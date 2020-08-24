@@ -1,4 +1,4 @@
-package com.dimageshare.hrm.util;
+package com.ds.hrm.util;
 
 public class Status {
     public static final Integer OK = 200;
