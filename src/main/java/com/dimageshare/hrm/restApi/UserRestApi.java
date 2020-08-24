@@ -33,6 +33,7 @@ public class UserRestApi {
         User data = userService.findById(id);
         if (data == null) {
             throw new UserNotFoundException(id);
+
         }
         return new ResourceResponse(data);
     }
