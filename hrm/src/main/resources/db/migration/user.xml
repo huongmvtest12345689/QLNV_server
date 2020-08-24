@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_user" author="que-bui">
+        <createTable tableName="user">
+            <column name="id" type="int"  autoIncrement="true">
+                <constraints nullable="false" unique="true"
+                             primaryKey="true" />
+            </column>
+            <column name="email" type="varchar(255)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="deleted_at" type="TIMESTAMP" defaultValueComputed="null"/>
+        </createTable>
+        <rollback/>
+    </changeSet>
+</databaseChangeLog>
