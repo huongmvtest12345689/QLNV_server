@@ -1,15 +1,5 @@
-CREATE TABLE country (
-  id bigint NOT NULL AUTO_INCREMENT,
-  country_name varchar(50) DEFAULT NULL,
-  country_code varchar(20) DEFAULT NULL,
-  PRIMARY KEY (id)
-);
-create table roles (
-	id int,
-	roles_id int,
-	roles_name varchar (300),
-	status tinyint
-);
+DROP TABLE IF EXISTS user;
+
 CREATE TABLE user (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) DEFAULT NULL,
