@@ -20,7 +20,7 @@ import java.util.List;
 public class UserRestApi {
     @Autowired
     private UserService userService;
-    @GetMapping("")ed
+    @GetMapping("")
     public ResourceResponse getUser() {
         List<User> data = userService.findAllUsers();
         if (data.isEmpty()) {
