@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mysql://0.0.0.0:3306/hrm
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 32
+      idle-timeout: 10000
+  profiles:
+    include: common
+
+logging:
+  file.max-history: 10
+  file.max-size: 10MB
+  level:
+    org.hibernate.SQL: trace
+    org.hibernate.type: trace
+  file:
+    name: ./log/hrm.log
+
+config:
+  redis:
+    host: 0.0.0.0
+    port: 6379
+
