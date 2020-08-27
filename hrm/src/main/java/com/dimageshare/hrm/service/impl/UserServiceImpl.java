@@ -8,12 +8,16 @@ import com.dimageshare.hrm.exception.UserLockException;
 import com.dimageshare.hrm.mapper.BaseMapper;
 import com.dimageshare.hrm.repository.UserRepository;
 import com.dimageshare.hrm.service.UserService;
+import com.dimageshare.hrm.util.AppUtils;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +37,22 @@ public class UserServiceImpl implements UserService {
 
     private BaseMapper<User, UserDTO> mapper = new BaseMapper<>(User.class, UserDTO.class);
 
+    @PostConstruct
+    public void init() {
+        Optional<User> user = userRepository.findById(1L);
+        if (user.isPresent())
+            return;
+        User userInit = new User();
+        userInit.setUsername("admin");
+        userInit.setPassword(passwordEncoder.encode("Admin@123"));
+        userInit.setEmail("admin@gmail");
+        userInit.setFirstName("jon");
+        userInit.setLastName("wick");
+        userInit.setIsLock((short) 0);
+        userInit.setIsActive((short) 1);
+        userInit.setProfileImageUrl("");
+        userRepository.save(userInit);
+    }
 
     @SneakyThrows
     @Override
@@ -41,11 +61,8 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             user = userRepository.findByEmail(username);
         }
-        if(user == null || user.getIsActive() == 0) {
+        if (user == null || AppUtils.compareShort(user.getIsActive(), 0) || AppUtils.compareShort(user.getIsLock(), 1)) {
             throw new UsernameNotFoundException(username);
-        }
-        if(user.getIsLock() == 1) {
-            throw new UserLockException();
         }
         return mappingToUserDetailsDTO(user);
     }
@@ -68,9 +85,9 @@ public class UserServiceImpl implements UserService {
         return user != null ? mapper.toDtoBean(user) : null;
     }
 
-    public void changePassword(String password, Long id){
+    public void changePassword(String password, Long id) {
         User user = userRepository.findById(id).orElse(null);
-        if(user == null)
+        if (user == null)
             return;
         user.setPassword(passwordEncoder.encode(password));
         userRepository.saveAndFlush(user);
@@ -79,29 +96,43 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateStatusUserLoginRedis(Long id, int status, String type) {
         User user = userRepository.getOne(id);
-        redisTemplate.opsForValue().set(type+user.getUsername(),status);
+        redisTemplate.opsForValue().set(type + user.getUsername(), status);
     }
 
     @Override
-    public void updateTimeLoginFail(String account) {
+    public void updateTimeLoginFail(String account) throws UserLockException {
         User user = userRepository.findByUsername(account);
         if (user == null) {
             user = userRepository.findByEmail(account);
         }
-        if(user == null || user.getIsActive() == 0 || user.getIsLock() == 1)
+        if (user == null || AppUtils.compareShort(user.getIsActive(), 0))
             return;
-        short count = (short) redisTemplate.opsForValue().get("lock_"+user.getUsername());
-        if(count < 5) {
-            redisTemplate.opsForValue().set("lock_"+user.getUsername(), ++count);
+        if (AppUtils.compareShort(user.getIsLock(), 1)) {
+            throw new UserLockException();
+        }
+        Short count = (Short) redisTemplate.opsForValue().get("lock_" + user.getUsername());
+        if (count == null)
+            count = 0;
+        if (count < 5) {
+            redisTemplate.opsForValue().set("lock_" + user.getUsername(), ++count);
         } else {
-            user.setIsLock((short)1);
+            user.setIsLock((short) 1);
             userRepository.save(user);
+            redisTemplate.opsForValue().set("lock_" + user.getUsername(), (short) 0);
+            throw new UserLockException();
         }
     }
 
     public void sendMailRemindPassword(String email) {
         User user = userRepository.findByEmail(email);
-        if(user == null || user.getIsActive() == 0 || user.getIsLock() == 1) return;
+        if (user == null || AppUtils.compareShort(user.getIsLock(), 1) || AppUtils.compareShort(user.getIsActive(), 0))
+            return;
         mailService.sendMailRemindPassword(email, "abc");
+    }
+
+    @Override
+    public boolean isLogout(String username) {
+        Integer status = (Integer) redisTemplate.opsForValue().get("block_" + username);
+        return status != null && status == 1;
     }
 }

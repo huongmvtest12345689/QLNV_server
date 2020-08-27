@@ -4,10 +4,12 @@ import com.dimageshare.hrm.dto.LoginDTO;
 import com.dimageshare.hrm.dto.ResetPasswordDTO;
 import com.dimageshare.hrm.dto.ResponseDTO;
 import com.dimageshare.hrm.dto.UserDetailsDTO;
+import com.dimageshare.hrm.exception.UserLockException;
 import com.dimageshare.hrm.filter.JwtTokenProvider;
 import com.dimageshare.hrm.service.UserService;
 import com.dimageshare.hrm.util.Constants;
 import com.dimageshare.hrm.util.Translator;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,8 +42,9 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @SneakyThrows
     @PostMapping(value = "/login")
-    public ResponseEntity<?> getStringAuth(@RequestBody @Valid LoginDTO loginDTO) {
+    public ResponseEntity<?> getStringAuth(@Valid @RequestBody LoginDTO loginDTO) {
         Authentication authentication;
         try {
              authentication = authenticationManager.authenticate(

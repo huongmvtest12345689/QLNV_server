@@ -25,6 +25,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserService customUserDetailsService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
@@ -34,19 +35,22 @@ public class AuthorizationFilter extends OncePerRequestFilter {
             String jwt = getJwtFromRequest(request);
 
             if (StringUtils.hasText(jwt)) {
-                if(!tokenProvider.validateToken(jwt)){
+                if (!tokenProvider.validateToken(jwt)) {
                     response.sendError(HttpStatus.UNAUTHORIZED.value(), "token expired");
                     return;
                 }
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
                 UserDetailsDTO userDetails = customUserDetailsService.findUserDetailById(userId);
-                if(userDetails != null) {
-                    UsernamePasswordAuthenticationToken
-                            authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                if (userDetails == null || customUserDetailsService.isLogout(userDetails.getUsername())) {
+                    response.sendError(HttpStatus.UNAUTHORIZED.value(), "token invalid");
+                    return;
                 }
+                UsernamePasswordAuthenticationToken
+                        authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+
             }
         } catch (Exception ex) {
             log.error("failed on set user authentication", ex);
