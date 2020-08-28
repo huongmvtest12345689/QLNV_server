@@ -1,7 +1,7 @@
-package com.dimageshare.hrm.exception;
+package com.ds.hrm.exception;
 
-import com.dimageshare.hrm.base.ResourceResponse;
-import com.dimageshare.hrm.util.Status;
+import com.ds.hrm.base.ResourceResponse;
+import com.ds.hrm.util.Status;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

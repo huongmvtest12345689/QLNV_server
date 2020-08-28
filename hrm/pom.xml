@@ -69,8 +69,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -81,5 +81,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

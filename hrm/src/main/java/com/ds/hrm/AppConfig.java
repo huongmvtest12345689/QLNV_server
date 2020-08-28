@@ -1,4 +1,4 @@
-package com.dimageshare.hrm;
+package com.ds.hrm;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -10,5 +10,5 @@ spring:
         dialect: org.hibernate.dialect.MySQLInnoDBDialect
         temp:
           use_jdbc_metadata_defaults: false
-  liquibase:
-    enabled: false
+  flyway:
+    enabled: true
