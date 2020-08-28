@@ -2,10 +2,10 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
   id int NOT NULL AUTO_INCREMENT,
-  name varchar(255) DEFAULT NULL,
+  username varchar(255) DEFAULT NULL,
   phone varchar(10) DEFAULT NULL,
   email varchar(99) NOT NULL,
-  password varchar(50) NOT NULL,
+  password varchar(512) NOT NULL,
   roles_id smallint DEFAULT NULL,
   permission_id smallint DEFAULT NULL,
   start_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

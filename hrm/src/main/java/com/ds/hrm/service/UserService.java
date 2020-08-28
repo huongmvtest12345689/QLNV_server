@@ -11,9 +11,9 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    public User findById(Integer id){
-        return userRepository.findById(id).orElse(null);
-    }
+
+    public User findByEmail(String email){ return userRepository.findByEmail(email); }
+    public User findById(Integer id){ return userRepository.findById(id).orElse(null); }
     public List<User> findAllUsers(){
         List<User> userList = userRepository.findAll();
         return userList;
