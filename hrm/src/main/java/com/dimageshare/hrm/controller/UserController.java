@@ -75,7 +75,7 @@ public class UserController {
     @PutMapping(value = "/change-pass", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> changePassword(@RequestBody @Valid ResetPasswordDTO resetPasswordDTO){
         UserDetailsDTO userDetailsDTO = (UserDetailsDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!userDetailsDTO.getUserDTO().getPassword().equals(passwordEncoder.encode(resetPasswordDTO.getOldPassword()))) {
+        if(!passwordEncoder.matches(resetPasswordDTO.getOldPassword(), userDetailsDTO.getUserDTO().getPassword())) {
             return ResponseEntity.badRequest().body(new ResponseDTO(Translator.translate("wrong.password"), null));
         }
         userService.changePassword(resetPasswordDTO.getNewPassword(), userDetailsDTO.getUserDTO().getId());
