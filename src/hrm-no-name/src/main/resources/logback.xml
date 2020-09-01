@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration  debug="true">
+<configuration debug="true">
 
-	<property name="DEV_HOME" value="c:/logs/seminar-springboot" />
+	<property name="DEV_HOME" value="/tmp/log" />
 	<property name="FILE_NAME" value="log" />
 	<appender name="FILE-THREAD"
 		class="ch.qos.logback.classic.sift.SiftingAppender">
