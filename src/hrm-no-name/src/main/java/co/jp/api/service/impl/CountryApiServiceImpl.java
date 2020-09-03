@@ -7,10 +7,12 @@ import co.jp.api.service.CountryApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class CountryApiServiceImpl implements CountryApiService {
     @Autowired
     private CountryDao countryDao;
@@ -27,12 +29,6 @@ public class CountryApiServiceImpl implements CountryApiService {
                 countryResDto.setCountryCode(country.getCountryCode());
                 countryResDtoList.add(countryResDto);
             }
-        } else {
-            CountryResDto countryResDto = new CountryResDto();
-            countryResDto.setId(1l);
-            countryResDto.setCountryName("Việt Nam");
-            countryResDto.setCountryCode("vi");
-            countryResDtoList.add(countryResDto);
         }
         return countryResDtoList;
     }
