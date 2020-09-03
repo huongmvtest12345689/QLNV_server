@@ -13,5 +13,5 @@ public class AppContants {
 	public static String PATH_CONFIG = "/src/main/resources/config/excel/";
 	public static String PATH_N = "\n";
 	public static String PATH_EMAIL = "/src/main/resources/static/images/email/";
-	
+
 }
