@@ -1,4 +1,4 @@
-package co.jp.api.dto;
+package co.jp.api.model.response;
 
 import lombok.Data;
 
