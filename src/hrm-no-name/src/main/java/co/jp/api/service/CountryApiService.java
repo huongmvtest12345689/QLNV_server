@@ -1,6 +1,6 @@
 package co.jp.api.service;
 
-import co.jp.api.dto.CountryResDto;
+import co.jp.api.model.response.CountryResDto;
 
 import java.util.List;
 

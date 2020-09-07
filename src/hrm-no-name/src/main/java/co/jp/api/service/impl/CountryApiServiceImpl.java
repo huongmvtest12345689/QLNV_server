@@ -1,7 +1,7 @@
 package co.jp.api.service.impl;
 
 import co.jp.api.dao.CountryDao;
-import co.jp.api.dto.CountryResDto;
+import co.jp.api.model.response.CountryResDto;
 import co.jp.api.entity.Country;
 import co.jp.api.service.CountryApiService;
 import org.springframework.beans.factory.annotation.Autowired;
