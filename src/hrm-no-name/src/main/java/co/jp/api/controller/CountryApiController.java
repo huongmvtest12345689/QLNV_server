@@ -1,8 +1,7 @@
 package co.jp.api.controller;
 
 import co.jp.api.cmn.ResourceResponse;
-import co.jp.api.cmn.ResponseApi;
-import co.jp.api.dto.CountryResDto;
+import co.jp.api.model.response.CountryResDto;
 import co.jp.api.exception.UserHandleException;
 import co.jp.api.service.CountryApiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,6 @@ public class CountryApiController {
 //        logger.info("/cmn/countryList");
         List<CountryResDto> countryResDto = new ArrayList<>();
         countryResDto = this.countryApiService.getCountry();
-        for (int i =0 ; i< 10; i++) {
-            String a = countryResDto.get(i).getCountryName();
-        }
         return new ResourceResponse(countryResDto);
     }
 }
