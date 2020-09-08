@@ -36,6 +36,6 @@ public class Roles implements Serializable {
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
-	@ManyToMany(mappedBy = "rolesSet")
-	private Set<User> users;
+//	@ManyToMany(mappedBy = "rolesSet")
+//	private Set<User> users;
 }
