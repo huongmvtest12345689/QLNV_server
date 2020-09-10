@@ -24,7 +24,8 @@
 	
 	</appender>
     <!-- level TRACE -> DUBUG -> INFO -> WARN -> ERROR  -->
-	<root level="info">
+    <!-- <root level="info"> -->
+	<root level="error">
 		<appender-ref ref="SAVE-TO-FILE" />
 	</root>
 
