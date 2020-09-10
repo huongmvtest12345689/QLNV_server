@@ -66,8 +66,7 @@ public class ExcelHelper {
                             String getId = dataFormatter.formatCellValue(currentCell);
                             msgError = validateColumn(rowNumber, "Id", sheetName, getId, CellType.NUMERIC, cellType, 0, 0);
                             if (msgError == null){
-                                int id = Integer.parseInt(getId);
-                                user.setId(id);
+                                user.setId(Integer.parseInt(getId));
                             } else {
                                 listMessage.add(msgError);
                             }
@@ -113,9 +112,8 @@ public class ExcelHelper {
                         case 4:
                             String getRole = dataFormatter.formatCellValue(currentCell);
                             msgError = validateColumn(rowNumber, "RoleId", sheetName, getRole, CellType.NUMERIC, cellType, 1, 4);
-                            if (msgError == null){
-                                int role = Integer.parseInt(getRole);
-                                user.setRolesId(role);
+                            if (null == msgError) {
+                                user.setRolesId(Integer.parseInt(getRole));
                             } else {
                                 listMessage.add(msgError);
                             }
@@ -124,8 +122,7 @@ public class ExcelHelper {
                             String getStatus = dataFormatter.formatCellValue(currentCell);
                             msgError = validateColumn(rowNumber, "Status", sheetName, getStatus, CellType.NUMERIC, cellType, 1, 2);
                             if (msgError == null){
-                                int status = Integer.parseInt(getStatus);
-                                user.setStatus(status);
+                                user.setStatus(Integer.parseInt(getStatus));
                             } else {
                                 listMessage.add(msgError);
                             }
