@@ -13,5 +13,6 @@ public class AppContants {
 	public static String PATH_CONFIG = "/src/main/resources/config/excel/";
 	public static String PATH_N = "\n";
 	public static String PATH_EMAIL = "/src/main/resources/static/images/email/";
-
+	public static final String PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,8}$";
+	public static final String EMAIL_PATTERN = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 }

@@ -1,17 +1,17 @@
 package co.jp.api.cmn;
 
-import co.jp.api.dao.UserDao;
 import co.jp.api.entity.User;
 import co.jp.api.service.ExcelApiService;
+import co.jp.api.util.AppContants;
+import co.jp.api.util.AppUtils;
 import co.jp.api.util.MessageContants;
-import lombok.experimental.Helper;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -27,14 +27,15 @@ public class ExcelHelper {
         return TYPE.equals(file.getContentType());
     }
     public Map<String, List<User>> mapDataObject(InputStream is) throws IOException {
+        MessageContants.messageImport = new HashMap<>();
         Map<String, List<User>> userMap = new HashMap<>();
-        List<String> listMessage = new ArrayList<String>();
         Workbook workbook = new XSSFWorkbook(is);
         Iterator<Sheet> sheetIterator = workbook.sheetIterator();
         while (sheetIterator.hasNext()) {
             Sheet sheet = sheetIterator.next();
             String sheetName = sheet.getSheetName();
             List<User> userList = new ArrayList<>();
+            List<String> listMessage = new ArrayList<String>();
             DataFormatter dataFormatter = new DataFormatter();
             Iterator<Row> rowIterator = sheet.rowIterator();
 
@@ -58,10 +59,12 @@ public class ExcelHelper {
                     Cell currentCell = cellsInRow.next();
                     CellType cellType = currentCell.getCellTypeEnum();
                     String msgError = null;
+                    String msgDuplicateError = null;
+
                     switch (cellIdx) {
                         case 0:
                             String getId = dataFormatter.formatCellValue(currentCell);
-                            msgError = validateColumn(rowNumber, cellIdx, getId, CellType.NUMERIC, cellType, 0, 0);
+                            msgError = validateColumn(rowNumber, "Id", sheetName, getId, CellType.NUMERIC, cellType, 0, 0);
                             if (msgError == null){
                                 int id = Integer.parseInt(getId);
                                 user.setId(id);
@@ -72,7 +75,7 @@ public class ExcelHelper {
 
                         case 1:
                             String getName = dataFormatter.formatCellValue(currentCell);
-                            msgError = validateColumn(rowNumber, cellIdx, getName, CellType.STRING, cellType, 0, 0);
+                            msgError = validateColumn(rowNumber, "Name", sheetName, getName, CellType.STRING, cellType, 0, 0);
                             if (msgError == null){
                                 user.setName(getName);
                             } else {
@@ -82,9 +85,14 @@ public class ExcelHelper {
 
                         case 2:
                             String getEmail = dataFormatter.formatCellValue(currentCell);
-                            msgError = validateColumn(rowNumber, cellIdx, getEmail, CellType.STRING, cellType, 0, 0);
+                            msgError = validateColumn(rowNumber, "Email", sheetName, getEmail, CellType.STRING, cellType, 0, 0);
                             if (msgError == null){
-                                user.setEmail(getEmail);
+                                msgDuplicateError = validateDuplicateEmail(rowNumber, "Email", sheetName, getEmail, userList);
+                                if (msgDuplicateError == null) {
+                                    user.setEmail(getEmail);
+                                } else {
+                                    listMessage.add(msgDuplicateError);
+                                }
                             } else {
                                 listMessage.add(msgError);
                             }
@@ -92,9 +100,11 @@ public class ExcelHelper {
 
                         case 3:
                             String getPassword = dataFormatter.formatCellValue(currentCell);
-                            msgError = validateColumn(rowNumber, cellIdx, getPassword, CellType.STRING, cellType, 0, 0);
+                            msgError = validateColumn(rowNumber, "Password", sheetName, getPassword, CellType.STRING, cellType, 4, 8);
                             if (msgError == null){
-                                user.setPassword(getPassword);
+                                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                                String hashedPassword = passwordEncoder.encode(getPassword);
+                                user.setPassword(hashedPassword);
                             } else {
                                 listMessage.add(msgError);
                             }
@@ -102,7 +112,7 @@ public class ExcelHelper {
 
                         case 4:
                             String getRole = dataFormatter.formatCellValue(currentCell);
-                            msgError = validateColumn(rowNumber, cellIdx, getRole, CellType.NUMERIC, cellType, 1, 4);
+                            msgError = validateColumn(rowNumber, "RoleId", sheetName, getRole, CellType.NUMERIC, cellType, 1, 4);
                             if (msgError == null){
                                 int role = Integer.parseInt(getRole);
                                 user.setRolesId(role);
@@ -112,10 +122,10 @@ public class ExcelHelper {
                             break;
                         case 5:
                             String getStatus = dataFormatter.formatCellValue(currentCell);
-                            msgError = validateColumn(rowNumber, cellIdx, getStatus, CellType.NUMERIC, cellType, 1, 2);
+                            msgError = validateColumn(rowNumber, "Status", sheetName, getStatus, CellType.NUMERIC, cellType, 1, 2);
                             if (msgError == null){
                                 int status = Integer.parseInt(getStatus);
-                                user.setRolesId(status);
+                                user.setStatus(status);
                             } else {
                                 listMessage.add(msgError);
                             }
@@ -128,79 +138,86 @@ public class ExcelHelper {
                     cellIdx++;
                 }
                 userList.add(user);
+                rowNumber++;
             }
             userMap.put(sheet.getSheetName(), userList);
             MessageContants.messageImport.put(sheet.getSheetName(), listMessage);
         }
         workbook.close();
-//        for (Map.Entry<String, List<User>> entry : userMap.entrySet()) {
+//      for (Map.Entry<String, List<String>> entry : MessageContants.messageImport.entrySet()) {
 //            String key = entry.getKey();
-//            List<User> values = entry.getValue();
+//            List<String> values = entry.getValue();
 //            System.out.println("Key = " + key);
-//            for (User user : values) {
-//                System.out.println("Name = " + user.getName() + "n");
-//                System.out.println("Email = " + user.getEmail() + "n");
+//            for (String msg : values) {
+//                System.out.println(msg);
 //            }
 //        }
-
-      for (Map.Entry<String, List<String>> entry : MessageContants.messageImport.entrySet()) {
-            String key = entry.getKey();
-            List<String> values = entry.getValue();
-            System.out.println("Key = " + key);
-            for (String msg : values) {
-                System.out.println(msg);
-            }
-        }
         return userMap;
     }
-    public void validateDataObject(List<User> userList){
-        for (User user : userList) {
-            User userCheck = excelApiService.findByEmail(user.getEmail());
-//            if (userCheck != null) {
-//                MessageContants.messageImport.add(userList.indexOf(user) + "bi trung du lieu trong DB.");
-//                return MessageContants.messageImport;
-//            }
+    public String validateDuplicateEmail(Integer rowColumn,
+                                         String columnName,
+                                         String sheetName,
+                                         String email,
+                                         List<User> userList){
+        String msg = null;
+        if (!"".equals(email)) {
+            User userCheck = excelApiService.findByEmail(email);
+            if (userCheck != null) {
+                msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_017);
+            }
+            for (User user : userList){
+                if (email.equals(user.getEmail())) {
+                    msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_016);
+                    break;
+                }
+            }
         }
+        return msg;
     }
     public String validateColumn(Integer rowColumn,
-                                 Integer colColumn,
+                                 String columnName,
+                                 String sheetName,
                                  String columnValue,
                                  CellType cellTypeValidate,
                                  CellType cellType,
-                                 Integer maxValue,
-                                 Integer minValue) {
+                                 Integer minValue,
+                                 Integer maxValue) {
         String msg = null;
         switch (cellType) {
             case BOOLEAN:
                 if (cellTypeValidate != cellType){
-                    msg = rowColumn+"_"+colColumn+": Du lieu Boolean khong dung dinh dang.";
+                    msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
                 }
                 return msg;
             case NUMERIC:
                 if (cellTypeValidate != cellType){
-                    msg = rowColumn+"_"+colColumn+": Du lieu So khong dung dinh dang.";
-                } else if(columnValue == "") {
-                    msg = rowColumn+"_"+colColumn+": Du lieu dang bi trong.";
+                    msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
                 } else {
                     int value = Integer.parseInt(columnValue);
                     if (maxValue != 0 && minValue != 0) {
                         if (value < minValue || value > maxValue){
-                            msg = rowColumn+"_"+colColumn+": Gia tri khong dung dinh dang.";
+                            msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
                         }
                     }
                 }
                 return msg;
             case STRING:
                 if (cellTypeValidate != cellType){
-                    msg = rowColumn+"_"+colColumn+": Du lieu String khong dung dinh dang.";
-                } else if(maxValue != 0 && minValue != 0) {
-                    if(Pattern.matches(MessageContants.PASSWORD_PATTERN, columnValue)){
-                        msg = rowColumn+"_"+colColumn+": Mat khau khong dung dinh dang.";
+                    msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
+                } else if (minValue != 0 && maxValue != 0) {
+                    Pattern pattern = Pattern.compile(AppContants.PASSWORD_PATTERN);
+                    if(!pattern.matcher(columnValue).matches()){
+                        msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
+                    }
+                } else if ("Email".equals(columnName)) {
+                    Pattern pattern = Pattern.compile(AppContants.EMAIL_PATTERN);
+                    if(!pattern.matcher(columnValue).matches()){
+                        msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
                     }
                 }
                 return msg;
             case BLANK:
-                msg = rowColumn+"_"+colColumn+": Du lieu dang bi trong.";
+                msg = AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_022);
                 return msg;
             default:
                 return null;

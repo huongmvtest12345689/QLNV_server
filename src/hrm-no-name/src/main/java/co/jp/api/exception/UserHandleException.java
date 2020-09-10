@@ -1,6 +1,7 @@
 package co.jp.api.exception;
 
 import co.jp.api.cmn.ResourceResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;

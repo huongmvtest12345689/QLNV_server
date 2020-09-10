@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+import java.util.Map;
+
 public class ResourceResponse extends ResponseEntity<ResourceResponse.Payload> {
 
     public ResourceResponse(Object object) {
@@ -22,6 +25,11 @@ public class ResourceResponse extends ResponseEntity<ResourceResponse.Payload> {
         super(new Payload(status, message, object), HttpStatus.OK);
         // TODO Auto-generated constructor stub
     }
+
+    public ResourceResponse(Integer status, String message, Map<String, List<String>> messageImport) {
+        super(new Payload(status, message, messageImport), HttpStatus.OK);
+    }
+
 
     @Data
     @AllArgsConstructor

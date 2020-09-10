@@ -21,7 +21,6 @@ public class CountryApiController {
     private CountryApiService countryApiService;
 
     @GetMapping("cmn/countryList")
-    @ExceptionHandler(UserHandleException.class)
     public ResourceResponse getListCountry(){
 //        logger.info("/cmn/countryList");
         List<CountryResDto> countryResDto = new ArrayList<>();

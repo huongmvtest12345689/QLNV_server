@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -16,18 +17,26 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import co.jp.api.cmn.Constants;
 
+import javax.persistence.Query;
+
 @Component
 public class AppUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(AppUtils.class);
-	
+
+	public static String getMessageVariable(Integer st1, String st2, String st3 , String msg) {
+		return MessageFormat.format(msg, st1, st2, st3);
+	}
+
 	public static Timestamp getDateNowTimestamp() {
 		LocalDateTime localDateNow = LocalDateTime.now();
 		Timestamp timestamp = Timestamp.valueOf(localDateNow);
