@@ -415,3 +415,45 @@ Caused by: org.flywaydb.core.api.FlywayException: Found non-empty schema(s) `hrm
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1821)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1758)
 	... 18 common frames omitted
+14-09-2020 10:00:09.913 [main] INFO  co.jp.HRMApplication.logStarting - Starting HRMApplication on DESKTOP-I2LH6B4 with PID 10712 (D:\VuJSTeam\QLNV_server\src\hrm-no-name\target\classes started by Bugger485 in D:\VuJSTeam\QLNV_server\src\hrm-no-name)
+14-09-2020 10:00:09.926 [main] INFO  co.jp.HRMApplication.logStartupProfileInfo - The following profiles are active: quebx
+14-09-2020 10:00:10.719 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+14-09-2020 10:00:10.735 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 16ms. Found 0 repository interfaces.
+14-09-2020 10:00:11.001 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$d755eebe] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14-09-2020 10:00:11.032 [main] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping.afterPropertiesSet - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+14-09-2020 10:00:11.047 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$32be29bf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14-09-2020 10:00:11.063 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$b23e76f1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+14-09-2020 10:00:11.360 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+14-09-2020 10:00:11.360 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8080"]
+14-09-2020 10:00:11.376 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+14-09-2020 10:00:11.376 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.16]
+14-09-2020 10:00:11.376 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-14.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Python27;C:\Windows;C:\Windows\System32;C:\Python27\scripts;C:\Users\Bugger485\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Xamp7\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Java\jdk-14.0.2\bin;C:\Users\Bugger485\Anaconda3;C:\Users\Bugger485\Anaconda3\Library\mingw-w64\bin;C:\Users\Bugger485\Anaconda3\Library\usr\bin;C:\Users\Bugger485\Anaconda3\Library\bin;C:\Users\Bugger485\Anaconda3\Scripts;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\;C:\Users\Bugger485\AppData\Local\Microsoft\WindowsApps;C:\Users\Bugger485\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Bugger485\AppData\Roaming\npm;C:\Users\Bugger485\AppData\Local\Yarn\bin;C:\Python27;C:\Program Files\JetBrains\PyCharm Community Edition 2019.3.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.2\bin;;.]
+14-09-2020 10:00:11.563 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+14-09-2020 10:00:11.563 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 1577 ms
+14-09-2020 10:00:11.718 [main] INFO  o.f.c.i.license.VersionPrinter.info - Flyway Community Edition 5.2.4 by Boxfuse
+14-09-2020 10:00:11.781 [main] INFO  o.f.c.i.database.DatabaseFactory.info - Database: jdbc:mysql://localhost:3306/hrm (MySQL 8.0)
+14-09-2020 10:00:11.906 [main] INFO  o.f.core.internal.command.DbValidate.info - Successfully validated 3 migrations (execution time 00:00.036s)
+14-09-2020 10:00:11.953 [main] INFO  o.f.c.i.s.JdbcTableSchemaHistory.info - Creating Schema History table: `hrm`.`flyway_schema_history`
+14-09-2020 10:00:13.890 [main] INFO  o.f.core.internal.command.DbMigrate.info - Current version of schema `hrm`: << Empty Schema >>
+14-09-2020 10:00:13.890 [main] INFO  o.f.core.internal.command.DbMigrate.info - Migrating schema `hrm` to version 1.001 - roles
+14-09-2020 10:00:13.921 [main] WARN  o.f.c.i.s.DefaultSqlScriptExecutor.warn - DB: Unknown table 'hrm.roles' (SQL State: 42S02 - Error Code: 1051)
+14-09-2020 10:00:14.374 [main] INFO  o.f.core.internal.command.DbMigrate.info - Migrating schema `hrm` to version 1.002 - country
+14-09-2020 10:00:14.421 [main] WARN  o.f.c.i.s.DefaultSqlScriptExecutor.warn - DB: Unknown table 'hrm.country' (SQL State: 42S02 - Error Code: 1051)
+14-09-2020 10:00:15.234 [main] INFO  o.f.core.internal.command.DbMigrate.info - Migrating schema `hrm` to version 1.003 - user
+14-09-2020 10:00:15.281 [main] WARN  o.f.c.i.s.DefaultSqlScriptExecutor.warn - DB: Unknown table 'hrm.user' (SQL State: 42S02 - Error Code: 1051)
+14-09-2020 10:00:15.999 [main] WARN  o.f.c.i.s.DefaultSqlScriptExecutor.warn - DB: Integer display width is deprecated and will be removed in a future release. (SQL State: HY000 - Error Code: 1681)
+14-09-2020 10:00:16.156 [main] INFO  o.f.core.internal.command.DbMigrate.info - Successfully applied 3 migrations to schema `hrm` (execution time 00:04.214s)
+14-09-2020 10:00:16.609 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+14-09-2020 10:00:16.718 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+14-09-2020 10:00:17.671 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+14-09-2020 10:00:17.999 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.3.7.Final}
+14-09-2020 10:00:17.999 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+14-09-2020 10:00:18.390 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+14-09-2020 10:00:18.671 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+14-09-2020 10:00:20.127 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+14-09-2020 10:00:20.721 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+14-09-2020 10:00:21.487 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Starting ProtocolHandler ["http-nio-8080"]
+14-09-2020 10:00:21.502 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+14-09-2020 10:00:21.518 [main] INFO  co.jp.HRMApplication.logStarted - Started HRMApplication in 11.819 seconds (JVM running for 13.012)
