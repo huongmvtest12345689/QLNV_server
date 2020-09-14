@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Table(name = User.TABLE_NAME)
 @Getter
 @Setter
+@Data
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
