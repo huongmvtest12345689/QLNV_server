@@ -1,5 +1,7 @@
 package co.jp.api.cmn;
 
+import java.util.List;
+
 public class Constants {
 
 	public static String SPACE = "";
@@ -20,7 +22,8 @@ public class Constants {
 
 	// Config file name
 	public static final String RESOURCE_PRODUCT_EXCEL = "classpath:/config/excel/product-excel-config.json";
-	
+	public static final long EXPIRE_TOKEN_AFTER_HOURS = 1;
+
 	/** Msg*/
 	public static final String MSG_I00001 = "Change password success";
 	public static final String MSG_I00002 = "Change password failse";

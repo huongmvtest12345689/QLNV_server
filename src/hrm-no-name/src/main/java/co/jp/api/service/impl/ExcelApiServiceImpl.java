@@ -31,19 +31,26 @@ public class ExcelApiServiceImpl implements ExcelApiService {
         Map<String, List<User>> mapUsers = new HashMap<>();
         try {
             mapUsers = excelHelper.mapDataObject(is);
-
-            for (Map.Entry<String, List<User>> mapUser : mapUsers.entrySet()) {
-                String key = mapUser.getKey();
-                List<User> userList = mapUser.getValue();
-                if (MessageContants.messageImport.get(key).size() == 0) {
-                    userApiService.importFileExcel(userList);
-                } else {
+            for (Map.Entry<String, List<String>> e : MessageContants.messageImport.entrySet()) {
+                if (e.getValue().size() != 0) {
                     return false;
                 }
             }
-        } catch (IOException e) {
-            throw new RuntimeException("fail to store excel data: " + e.getMessage());
-        }
+
+            for (Map.Entry<String, List<User>> mapUser : mapUsers.entrySet()) {
+                    String key = mapUser.getKey();
+                    List<User> userList = mapUser.getValue();
+//                    if (MessageContants.messageImport.get(key).size() == 0) {
+                        userApiService.importFileExcel(userList);
+//                    } else {
+//                        return false;
+//                    }
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("fail to store excel data: " + e.getMessage());
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+                e.printStackTrace();
+            }
         return true;
     }
     public User findByEmail(String email){

@@ -3,13 +3,7 @@ package co.jp.api.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +30,6 @@ public class Roles implements Serializable {
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
-//	@ManyToMany(mappedBy = "rolesSet")
-//	private Set<User> users;
+	@OneToMany(mappedBy = "rolesSet")
+	private Set<User> users;
 }

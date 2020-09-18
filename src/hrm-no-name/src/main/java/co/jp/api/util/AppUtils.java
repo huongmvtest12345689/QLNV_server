@@ -22,6 +22,9 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import co.jp.api.cmn.Constants;
@@ -218,5 +221,13 @@ public class AppUtils {
 	public static String formatEmail(String email) {
 		String emailStr = email.replaceAll("%40", "@").replaceAll("=", "");
 		return emailStr;
+	}
+	public static String encode(String password) {
+		return BCrypt.hashpw(password, BCrypt.gensalt(12));
+	}
+	public static boolean checkCurrentPassword(String password, String currentPassword) {
+		PasswordEncoder passwordEnocder = new BCryptPasswordEncoder();
+		return passwordEnocder.matches(password, currentPassword);
+
 	}
 }
