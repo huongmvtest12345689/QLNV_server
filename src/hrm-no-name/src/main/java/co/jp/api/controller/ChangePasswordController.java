@@ -17,12 +17,13 @@ public class ChangePasswordController {
     @PostMapping("/update")
     public ResourceResponse updatePassword(@RequestBody ChangePasswordRequest req){
         int userId = req.getId();
+        System.out.println("data: id : "+ req.getId()+ "pass : "+ req.getPassword()+"new :" + req.getNewPassword());
         String password = req.getPassword();
         String newPassword = req.getNewPassword();
         if(!changePassService.checkPassoword(userId,password)){
             return new ResourceResponse(Status.STATUS_ERROR ,Messages.PASSWORD_NOT_FOUND);
         }else{
-//            changePassService.updatePassword(userId,newPassword);
+            changePassService.updatePassword(userId,newPassword);
             return new ResourceResponse(Status.STATUS_OK,Messages.UPDATE_PASSWORD_SUCCESS);
         }
     }

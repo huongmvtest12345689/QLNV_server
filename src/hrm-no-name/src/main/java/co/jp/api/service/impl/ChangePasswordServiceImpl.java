@@ -14,12 +14,15 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
     UserDao userDao;
     @Override
     public boolean checkPassoword(Integer userId,String currentPassword) {
+        System.out.println("Check pass word: ");
+        System.out.println("current :"+currentPassword);
         User user = userDao.findById(userId).orElse(null);
         if(user == null){
             return false;
         }else {
-
-            return (user.getPassword().equals(currentPassword)) ? true : false;
+            System.out.println("user"+user.getPassword());
+            System.out.println("result :"+ user.getPassword().equals(currentPassword));
+            return (user.getPassword().equals(currentPassword));
         }
 
     }
