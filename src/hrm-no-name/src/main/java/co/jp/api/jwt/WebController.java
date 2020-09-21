@@ -2,6 +2,8 @@ package co.jp.api.jwt;
 import co.jp.api.cmn.ResourceResponse;
 import co.jp.api.model.request.LoginRequest;
 
+import co.jp.api.util.Messages;
+import co.jp.api.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,8 +25,9 @@ public class WebController{
 
     @PostMapping("/login")
     public ResourceResponse authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+        System.out.println("Login:");
         System.out.println(loginRequest.getUsername());
+        System.out.println(loginRequest.getPassword());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
@@ -38,7 +41,7 @@ public class WebController{
 
         // Trả về jwt cho người dùng.
         String jwt = tokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
-        return new ResourceResponse(jwt);
+        return new ResourceResponse(Status.STATUS_OK, Messages.LOGIN_SUCCESS,jwt);
     }
 
     // Api /api/random yêu cầu phải xác thực mới có thể request
