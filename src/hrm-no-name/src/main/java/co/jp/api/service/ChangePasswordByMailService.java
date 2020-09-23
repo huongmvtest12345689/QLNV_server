@@ -1,6 +1,7 @@
 package co.jp.api.service;
 
 import co.jp.api.dao.UserDao;
+import co.jp.api.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,7 +15,7 @@ import java.util.Random;
 
 @Service
 public class ChangePasswordByMailService {
-    private final long CODE_EXPIRATION = 24*60*60*1000L;
+    private final long CODE_EXPIRATION = 60*60*1000L;
     @Autowired
     JavaMailSender emailSender;
     @Autowired
@@ -47,5 +48,19 @@ public class ChangePasswordByMailService {
         secureRandom.nextBytes(token);
         return new BigInteger(1, token).toString(16); //hex encoding
     }
+    public void updatePassword(int userId, String newPassword) {
+        userDao.updatePasswordById(userId,newPassword);
+    }
+    public boolean checkCode(int userId, String code){
+        User user = userDao.findByCode(code);
+        Date now = new Date();
+        if(user != null){
+            if(user.getCodeEnd().getTime()>=now.getTime()){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

@@ -25,4 +25,5 @@ public interface UserDao extends JpaRepository<User, Integer> {
     void setCode(String email, String code, Date codeStart, Date codeEnd);
     User findByName(String name);
     User findByEmail(String email);
+    User findByCode(String code);
 }

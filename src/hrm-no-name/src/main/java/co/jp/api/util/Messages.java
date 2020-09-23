@@ -7,5 +7,10 @@ public abstract class Messages {
     public static final String LOGIN_FAIL = "The user Email or password is wrong.";
     public static final String REGISTER_SUCCESS = "REGISTER_SUCCESS";
     public static final String REGISTER_FAIL = "REGISTER_FAIL";
+    public static final String SEND_MAIL_OK = "SEND_MAIL_OK";
+    public static final String SEND_MAIL_FAIL = "SEND_MAIL_FAIL";
+    public static final String CODE_EXPIRED = "Your code is expired or not available";
+
+
 
 }
