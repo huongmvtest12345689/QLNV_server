@@ -1,6 +1,6 @@
 package co.jp.api.jwt;
 
-import co.jp.api.dao.impl.UserDao;
+import co.jp.api.dao.UserDao;
 import co.jp.api.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

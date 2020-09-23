@@ -1,5 +1,6 @@
 package co.jp.api.jwt;
 
+import co.jp.api.model.response.UserRestDto;
 import io.swagger.models.auth.In;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
@@ -10,17 +11,12 @@ import java.util.Date;
 @Component
 @Slf4j
 public class JwtTokenProvider {
-    // Đoạn JWT_SECRET này là bí mật, chỉ có phía server biết
     private final String JWT_SECRET = "lodaaaaaa";
-
-    //Thời gian có hiệu lực của chuỗi jwt
     private final long JWT_EXPIRATION = 604800000L;
 
-    // Tạo ra jwt từ thông tin user
     public String generateToken(CustomUserDetails userDetails) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + JWT_EXPIRATION);
-        // Tạo chuỗi json web token từ id của user.
         return Jwts.builder()
                 .setSubject(Integer.toString(userDetails.getUser().getId()))
                 .setIssuedAt(now)
@@ -28,15 +24,19 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
     }
-
-    // Lấy thông tin user từ jwt
     public Integer getUserIdFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(JWT_SECRET)
                 .parseClaimsJws(token)
                 .getBody();
-
         return Integer.parseInt(claims.getSubject());
+    }
+    public UserRestDto getUserResDtoFromJWT(String token){
+        Claims claims = Jwts.parser()
+                .setSigningKey(JWT_SECRET)
+                .parseClaimsJws(token)
+                .getBody();
+        return new UserRestDto(Integer.parseInt(claims.getSubject()),"Bearer "+token,claims.getIssuedAt(),claims.getExpiration());
     }
 
     public boolean validateToken(String authToken) {

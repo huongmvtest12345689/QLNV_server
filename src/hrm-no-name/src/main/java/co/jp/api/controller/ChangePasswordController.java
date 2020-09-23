@@ -7,6 +7,7 @@ import co.jp.api.service.impl.ChangePasswordServiceImpl;
 import co.jp.api.util.Messages;
 import co.jp.api.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,10 +17,10 @@ public class ChangePasswordController {
     ChangePasswordService changePassService;
     @PostMapping("/update")
     public ResourceResponse updatePassword(@RequestBody ChangePasswordRequest req){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         int userId = req.getId();
-        System.out.println("data: id : "+ req.getId()+ "pass : "+ req.getPassword()+"new :" + req.getNewPassword());
         String password = req.getPassword();
-        String newPassword = req.getNewPassword();
+        String newPassword =encoder.encode(req.getNewPassword());
         if(!changePassService.checkPassoword(userId,password)){
             return new ResourceResponse(Status.STATUS_ERROR ,Messages.PASSWORD_NOT_FOUND);
         }else{
