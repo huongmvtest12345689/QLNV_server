@@ -2,6 +2,7 @@ package co.jp.api.controller;
 
 import co.jp.api.cmn.ResourceResponse;
 import co.jp.api.entity.User;
+import co.jp.api.model.CellInfoDTO;
 import co.jp.api.model.request.LoginResDto;
 import co.jp.api.model.request.ResetPasswordDto;
 import co.jp.api.model.response.ResetPasswordResDto;
@@ -15,7 +16,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -48,13 +51,17 @@ public class UserApiController {
                         loginRequest.getPassword()
                 )
         );
+        User userLogin = userApiService.findByEmail(loginRequest.getEmail());
         // Nếu không xảy ra exception tức là thông tin hợp lệ
         // Set thông tin authentication vào Security Context
         SecurityContextHolder.getContext().setAuthentication(authentication);
         // Trả về jwt cho người dùng.
         String jwt = tokenJWTUtils.generateToken(SecurityContextHolder.getContext().getAuthentication().getName());
-        CookieUtil.createCookie(httpServletResponse, jwtTokenCookieName, jwt, false, -1, "localhost:8081");
-        return new ResourceResponse(200, jwt);
+        Cookie cookie = CookieUtil.createCookie(httpServletResponse, jwtTokenCookieName, jwt, false, 86400, "localhost");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("jwt",jwt);
+        map.put("cookie",cookie);
+        return new ResourceResponse(200, "Đăng nhập thành công", userLogin);
     }
 
     @GetMapping("random")
@@ -79,7 +86,7 @@ public class UserApiController {
 
     @GetMapping("/logout")
     public ResourceResponse logout(HttpServletResponse httpServletResponse) {
-        CookieUtil.clearCookie(httpServletResponse, jwtTokenCookieName);
-        return new ResourceResponse("Login");
+        Cookie cookie = CookieUtil.clearCookie(httpServletResponse, jwtTokenCookieName);
+        return new ResourceResponse(200, "logout success", cookie);
     }
 }

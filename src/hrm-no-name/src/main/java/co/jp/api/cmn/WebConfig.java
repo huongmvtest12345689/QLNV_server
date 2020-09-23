@@ -6,6 +6,7 @@ import co.jp.api.util.JWTFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -65,16 +66,38 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
         registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*").allowedMethods("*");
     }
 
+    private CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedMethods(
+                Arrays.asList(
+                        HttpMethod.GET.name(),
+                        HttpMethod.POST.name(),
+                        HttpMethod.PUT.name(),
+                        HttpMethod.DELETE.name()));
+
+//        corsConfiguration.setAllowedOrigins(appProperties.getCors().getAllowOrigin());
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8081"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setMaxAge(3600L);
+
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Cache-Control", "Content-Type"));
+
+        UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
+        corsSource.registerCorsConfiguration("/**", corsConfiguration);
+        return corsSource;
+    }
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .cors().configurationSource(corsConfigurationSource()).and()
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                .antMatchers("/api/user/login").permitAll()
+                .antMatchers("/api/user/login", "/api/user/forgot-password").permitAll()
                 .antMatchers( "/api/member/**").hasAnyAuthority("ROLES_MEMBER", "ROLES_ADMIN")
                 .antMatchers("/api/admin/**").hasAuthority("ROLES_ADMIN")
-                .anyRequest().authenticated().and()
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().authenticated();
+        httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

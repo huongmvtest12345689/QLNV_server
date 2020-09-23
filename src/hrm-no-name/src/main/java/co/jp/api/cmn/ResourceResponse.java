@@ -30,6 +30,10 @@ public class ResourceResponse extends ResponseEntity<ResourceResponse.Payload> {
         super(new Payload(status, message, messageImport), HttpStatus.OK);
     }
 
+    public ResourceResponse(int status, String message, Map<String, Object> map) {
+        super(new Payload(status, message, map), HttpStatus.OK);
+    }
+
 
     @Data
     @AllArgsConstructor

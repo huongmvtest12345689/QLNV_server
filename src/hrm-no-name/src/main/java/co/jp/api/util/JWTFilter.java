@@ -13,9 +13,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 public class JWTFilter extends OncePerRequestFilter {
@@ -52,13 +55,37 @@ public class JWTFilter extends OncePerRequestFilter {
 //
 //        filterChain.doFilter(request, response);
 //    }
-
+    private final List<String> allowedOrigins = Arrays.asList("http://localhost:8081");
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+//        if (httpServletRequest instanceof HttpServletRequest && httpServletResponse instanceof HttpServletResponse) {
+//            HttpServletRequest request = (HttpServletRequest) httpServletRequest;
+//            HttpServletResponse response = (HttpServletResponse) httpServletResponse;
+//
+//            // Access-Control-Allow-Origin
+//            String origin = request.getHeader("Origin");
+//            response.setHeader("Access-Control-Allow-Origin", allowedOrigins.contains(origin) ? origin : "");
+//            response.setHeader("Vary", "Origin");
+//
+//            // Access-Control-Max-Age
+//            response.setHeader("Access-Control-Max-Age", "3600");
+//
+//            // Access-Control-Allow-Credentials
+//            response.setHeader("Access-Control-Allow-Credentials", "true");
+//
+//            // Access-Control-Allow-Methods
+//            response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+//
+//            // Access-Control-Allow-Headers
+//            response.setHeader("Access-Control-Allow-Headers",
+//                    "Origin, X-Requested-With, Content-Type, Accept, " + "X-CSRF-TOKEN");
+//        }
+
         String username = getSubject(httpServletRequest, jwtTokenCookieName, signingKey);
         if(username == null){
-            String authService = this.getFilterConfig().getInitParameter("services.auth");
-            httpServletResponse.sendRedirect(authService + "?redirect=" + httpServletRequest.getRequestURL());
+//            String authService = this.getFilterConfig().getInitParameter("services.auth");
+//            httpServletResponse.sendRedirect(authService + "?redirect=" + httpServletRequest.getRequestURL());
+            System.out.println("null");
         } else{
             try {
                 String jwt = CookieUtil.getValueCookie(httpServletRequest, jwtTokenCookieName);
@@ -78,9 +105,9 @@ public class JWTFilter extends OncePerRequestFilter {
             } catch (Exception e) {
                 logger.error("Cannot set user authentication: {}", e);
             }
-            httpServletRequest.setAttribute("username", username);
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
+        httpServletRequest.setAttribute("username", username);
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {

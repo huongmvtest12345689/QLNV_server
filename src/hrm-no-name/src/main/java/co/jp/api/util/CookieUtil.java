@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CookieUtil {
-    public static void createCookie(HttpServletResponse httpServletResponse, String name, String value, Boolean secure, Integer maxAge, String domain) {
+    public static Cookie createCookie(HttpServletResponse httpServletResponse, String name, String value, Boolean secure, Integer maxAge, String domain) {
         Cookie cookie = new Cookie(name, value);
         cookie.setSecure(secure);
         cookie.setHttpOnly(true);
@@ -15,14 +15,16 @@ public class CookieUtil {
         cookie.setDomain(domain);
         cookie.setPath("/");
         httpServletResponse.addCookie(cookie);
+        return cookie;
     }
 
-    public static void clearCookie(HttpServletResponse httpServletResponse, String name) {
+    public static Cookie clearCookie(HttpServletResponse httpServletResponse, String name) {
         Cookie cookie = new Cookie(name, null);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
         httpServletResponse.addCookie(cookie);
+        return cookie;
     }
 
     public static String getValueCookie(HttpServletRequest httpServletRequest, String name) {
