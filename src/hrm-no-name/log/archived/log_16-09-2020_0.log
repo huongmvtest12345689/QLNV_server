@@ -1,0 +1,153 @@
+16-09-2020 09:12:41.618 [main] INFO  co.jp.HRMApplication.logStarting - Starting HRMApplication on DESKTOP-I2LH6B4 with PID 3200 (D:\VuJSTeam\QLNV_server\src\hrm-no-name\target\classes started by Bugger485 in D:\VuJSTeam\QLNV_server\src\hrm-no-name)
+16-09-2020 09:12:41.644 [main] INFO  co.jp.HRMApplication.logStartupProfileInfo - The following profiles are active: quebx
+16-09-2020 09:12:43.286 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+16-09-2020 09:12:43.335 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 45ms. Found 1 repository interfaces.
+16-09-2020 09:12:43.654 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$c9754932] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:12:43.679 [main] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping.afterPropertiesSet - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+16-09-2020 09:12:43.704 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$24dd8433] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:12:43.714 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$a45dd165] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:12:44.206 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8088 (http)
+16-09-2020 09:12:44.222 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:12:44.243 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+16-09-2020 09:12:44.243 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.16]
+16-09-2020 09:12:44.254 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-14.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Python27;C:\Windows;C:\Windows\System32;C:\Python27\scripts;C:\Users\Bugger485\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Xamp7\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Bugger485\Anaconda3;C:\Users\Bugger485\Anaconda3\Library\mingw-w64\bin;C:\Users\Bugger485\Anaconda3\Library\usr\bin;C:\Users\Bugger485\Anaconda3\Library\bin;C:\Users\Bugger485\Anaconda3\Scripts;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\;C:\Users\Bugger485\AppData\Local\Microsoft\WindowsApps;C:\Users\Bugger485\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Bugger485\AppData\Roaming\npm;C:\Users\Bugger485\AppData\Local\Yarn\bin;C:\Python27;C:\Program Files\JetBrains\PyCharm Community Edition 2019.3.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.2\bin;;.]
+16-09-2020 09:12:44.508 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+16-09-2020 09:12:44.509 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 2775 ms
+16-09-2020 09:12:44.722 [main] INFO  o.f.c.i.license.VersionPrinter.info - Flyway Community Edition 5.2.4 by Boxfuse
+16-09-2020 09:12:46.395 [main] INFO  o.f.c.i.database.DatabaseFactory.info - Database: jdbc:mysql://localhost:3306/hrm (MySQL 8.0)
+16-09-2020 09:12:47.425 [main] INFO  o.f.core.internal.command.DbValidate.info - Successfully validated 3 migrations (execution time 00:00.174s)
+16-09-2020 09:12:47.453 [main] INFO  o.f.core.internal.command.DbMigrate.info - Current version of schema `hrm`: 1.003
+16-09-2020 09:12:47.454 [main] INFO  o.f.core.internal.command.DbMigrate.info - Schema `hrm` is up to date. No migration necessary.
+16-09-2020 09:12:47.517 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+16-09-2020 09:12:47.569 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+16-09-2020 09:12:47.623 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+16-09-2020 09:12:47.680 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.3.7.Final}
+16-09-2020 09:12:47.681 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+16-09-2020 09:12:47.809 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16-09-2020 09:12:48.140 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16-09-2020 09:12:48.719 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+16-09-2020 09:12:48.925 [main] INFO  o.h.h.i.QueryTranslatorFactoryInitiator.initiateService - HHH000397: Using ASTQueryTranslatorFactory
+16-09-2020 09:12:49.291 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16-09-2020 09:12:49.883 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Starting ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:12:49.904 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8088 (http) with context path ''
+16-09-2020 09:12:49.906 [main] INFO  co.jp.HRMApplication.logStarted - Started HRMApplication in 8.798 seconds (JVM running for 11.004)
+16-09-2020 09:14:35.766 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16-09-2020 09:14:35.767 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+16-09-2020 09:14:35.825 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 57 ms
+16-09-2020 09:20:08.458 [main] INFO  co.jp.HRMApplication.logStarting - Starting HRMApplication on DESKTOP-I2LH6B4 with PID 7824 (D:\VuJSTeam\QLNV_server\src\hrm-no-name\target\classes started by Bugger485 in D:\VuJSTeam\QLNV_server\src\hrm-no-name)
+16-09-2020 09:20:08.462 [main] INFO  co.jp.HRMApplication.logStartupProfileInfo - The following profiles are active: quebx
+16-09-2020 09:20:09.527 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+16-09-2020 09:20:09.599 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 68ms. Found 1 repository interfaces.
+16-09-2020 09:20:09.970 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$d1a4c098] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:20:10.019 [main] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping.afterPropertiesSet - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+16-09-2020 09:20:10.042 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2d0cfb99] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:20:10.052 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$ac8d48cb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:20:10.557 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8088 (http)
+16-09-2020 09:20:10.570 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:20:10.578 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+16-09-2020 09:20:10.579 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.16]
+16-09-2020 09:20:10.604 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-14.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Python27;C:\Windows;C:\Windows\System32;C:\Python27\scripts;C:\Users\Bugger485\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Xamp7\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Bugger485\Anaconda3;C:\Users\Bugger485\Anaconda3\Library\mingw-w64\bin;C:\Users\Bugger485\Anaconda3\Library\usr\bin;C:\Users\Bugger485\Anaconda3\Library\bin;C:\Users\Bugger485\Anaconda3\Scripts;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\;C:\Users\Bugger485\AppData\Local\Microsoft\WindowsApps;C:\Users\Bugger485\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Bugger485\AppData\Roaming\npm;C:\Users\Bugger485\AppData\Local\Yarn\bin;C:\Python27;C:\Program Files\JetBrains\PyCharm Community Edition 2019.3.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.2\bin;;.]
+16-09-2020 09:20:10.855 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+16-09-2020 09:20:10.855 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 2322 ms
+16-09-2020 09:20:11.030 [main] INFO  o.f.c.i.license.VersionPrinter.info - Flyway Community Edition 5.2.4 by Boxfuse
+16-09-2020 09:20:11.182 [main] INFO  o.f.c.i.database.DatabaseFactory.info - Database: jdbc:mysql://localhost:3306/hrm (MySQL 8.0)
+16-09-2020 09:20:11.427 [main] INFO  o.f.core.internal.command.DbValidate.info - Successfully validated 3 migrations (execution time 00:00.068s)
+16-09-2020 09:20:11.438 [main] INFO  o.f.core.internal.command.DbMigrate.info - Current version of schema `hrm`: 1.003
+16-09-2020 09:20:11.439 [main] INFO  o.f.core.internal.command.DbMigrate.info - Schema `hrm` is up to date. No migration necessary.
+16-09-2020 09:20:11.599 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+16-09-2020 09:20:11.616 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+16-09-2020 09:20:11.741 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+16-09-2020 09:20:11.884 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.3.7.Final}
+16-09-2020 09:20:11.886 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+16-09-2020 09:20:12.076 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16-09-2020 09:20:12.303 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16-09-2020 09:20:12.865 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+16-09-2020 09:20:13.130 [main] INFO  o.h.h.i.QueryTranslatorFactoryInitiator.initiateService - HHH000397: Using ASTQueryTranslatorFactory
+16-09-2020 09:20:13.660 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16-09-2020 09:20:14.287 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Starting ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:20:14.307 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8088 (http) with context path ''
+16-09-2020 09:20:14.317 [main] INFO  co.jp.HRMApplication.logStarted - Started HRMApplication in 6.454 seconds (JVM running for 8.349)
+16-09-2020 09:20:21.187 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16-09-2020 09:20:21.188 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+16-09-2020 09:20:21.207 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 19 ms
+16-09-2020 09:22:32.118 [main] INFO  co.jp.HRMApplication.logStarting - Starting HRMApplication on DESKTOP-I2LH6B4 with PID 2904 (D:\VuJSTeam\QLNV_server\src\hrm-no-name\target\classes started by Bugger485 in D:\VuJSTeam\QLNV_server\src\hrm-no-name)
+16-09-2020 09:22:32.120 [main] INFO  co.jp.HRMApplication.logStartupProfileInfo - The following profiles are active: quebx
+16-09-2020 09:22:33.224 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+16-09-2020 09:22:33.310 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 77ms. Found 1 repository interfaces.
+16-09-2020 09:22:33.648 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f6e7e88] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:22:33.673 [main] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping.afterPropertiesSet - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+16-09-2020 09:22:33.747 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6ad6b989] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:22:33.777 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$ea5706bb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:22:34.091 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8088 (http)
+16-09-2020 09:22:34.103 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:22:34.113 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+16-09-2020 09:22:34.113 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.16]
+16-09-2020 09:22:34.120 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-14.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Python27;C:\Windows;C:\Windows\System32;C:\Python27\scripts;C:\Users\Bugger485\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Xamp7\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Bugger485\Anaconda3;C:\Users\Bugger485\Anaconda3\Library\mingw-w64\bin;C:\Users\Bugger485\Anaconda3\Library\usr\bin;C:\Users\Bugger485\Anaconda3\Library\bin;C:\Users\Bugger485\Anaconda3\Scripts;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\;C:\Users\Bugger485\AppData\Local\Microsoft\WindowsApps;C:\Users\Bugger485\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Bugger485\AppData\Roaming\npm;C:\Users\Bugger485\AppData\Local\Yarn\bin;C:\Python27;C:\Program Files\JetBrains\PyCharm Community Edition 2019.3.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.2\bin;;.]
+16-09-2020 09:22:34.274 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+16-09-2020 09:22:34.274 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 2109 ms
+16-09-2020 09:22:34.464 [main] INFO  o.f.c.i.license.VersionPrinter.info - Flyway Community Edition 5.2.4 by Boxfuse
+16-09-2020 09:22:34.563 [main] INFO  o.f.c.i.database.DatabaseFactory.info - Database: jdbc:mysql://localhost:3306/hrm (MySQL 8.0)
+16-09-2020 09:22:34.669 [main] INFO  o.f.core.internal.command.DbValidate.info - Successfully validated 3 migrations (execution time 00:00.025s)
+16-09-2020 09:22:34.679 [main] INFO  o.f.core.internal.command.DbMigrate.info - Current version of schema `hrm`: 1.003
+16-09-2020 09:22:34.680 [main] INFO  o.f.core.internal.command.DbMigrate.info - Schema `hrm` is up to date. No migration necessary.
+16-09-2020 09:22:34.737 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+16-09-2020 09:22:34.746 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+16-09-2020 09:22:34.794 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+16-09-2020 09:22:34.902 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.3.7.Final}
+16-09-2020 09:22:34.906 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+16-09-2020 09:22:35.416 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16-09-2020 09:22:35.650 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16-09-2020 09:22:36.444 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+16-09-2020 09:22:36.702 [main] INFO  o.h.h.i.QueryTranslatorFactoryInitiator.initiateService - HHH000397: Using ASTQueryTranslatorFactory
+16-09-2020 09:22:37.296 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16-09-2020 09:22:37.911 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Starting ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:22:37.940 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8088 (http) with context path ''
+16-09-2020 09:22:37.943 [main] INFO  co.jp.HRMApplication.logStarted - Started HRMApplication in 6.146 seconds (JVM running for 7.034)
+16-09-2020 09:22:37.986 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16-09-2020 09:22:37.986 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+16-09-2020 09:22:38.007 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 21 ms
+16-09-2020 09:23:08.558 [main] INFO  co.jp.HRMApplication.logStarting - Starting HRMApplication on DESKTOP-I2LH6B4 with PID 13960 (D:\VuJSTeam\QLNV_server\src\hrm-no-name\target\classes started by Bugger485 in D:\VuJSTeam\QLNV_server\src\hrm-no-name)
+16-09-2020 09:23:08.560 [main] INFO  co.jp.HRMApplication.logStartupProfileInfo - The following profiles are active: quebx
+16-09-2020 09:23:09.694 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data repositories in DEFAULT mode.
+16-09-2020 09:23:09.771 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 72ms. Found 1 repository interfaces.
+16-09-2020 09:23:10.107 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$16de5d31] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:23:10.135 [main] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping.afterPropertiesSet - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+16-09-2020 09:23:10.165 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$72469832] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:23:10.178 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.postProcessAfterInitialization - Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$f1c6e564] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16-09-2020 09:23:10.530 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8088 (http)
+16-09-2020 09:23:10.542 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:23:10.549 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+16-09-2020 09:23:10.550 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.16]
+16-09-2020 09:23:10.555 [main] INFO  o.a.c.core.AprLifecycleListener.log - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-14.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Python27;C:\Windows;C:\Windows\System32;C:\Python27\scripts;C:\Users\Bugger485\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Xamp7\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Bugger485\Anaconda3;C:\Users\Bugger485\Anaconda3\Library\mingw-w64\bin;C:\Users\Bugger485\Anaconda3\Library\usr\bin;C:\Users\Bugger485\Anaconda3\Library\bin;C:\Users\Bugger485\Anaconda3\Scripts;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Bugger485\AppData\Local\Programs\Python\Python38-32\;C:\Users\Bugger485\AppData\Local\Microsoft\WindowsApps;C:\Users\Bugger485\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Bugger485\AppData\Roaming\npm;C:\Users\Bugger485\AppData\Local\Yarn\bin;C:\Python27;C:\Program Files\JetBrains\PyCharm Community Edition 2019.3.3\bin;;C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.2\bin;;.]
+16-09-2020 09:23:10.698 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+16-09-2020 09:23:10.698 [main] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 2104 ms
+16-09-2020 09:23:10.846 [main] INFO  o.f.c.i.license.VersionPrinter.info - Flyway Community Edition 5.2.4 by Boxfuse
+16-09-2020 09:23:10.959 [main] INFO  o.f.c.i.database.DatabaseFactory.info - Database: jdbc:mysql://localhost:3306/hrm (MySQL 8.0)
+16-09-2020 09:23:11.063 [main] INFO  o.f.core.internal.command.DbValidate.info - Successfully validated 3 migrations (execution time 00:00.035s)
+16-09-2020 09:23:11.075 [main] INFO  o.f.core.internal.command.DbMigrate.info - Current version of schema `hrm`: 1.003
+16-09-2020 09:23:11.076 [main] INFO  o.f.core.internal.command.DbMigrate.info - Schema `hrm` is up to date. No migration necessary.
+16-09-2020 09:23:11.133 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+16-09-2020 09:23:11.143 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+16-09-2020 09:23:11.192 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+16-09-2020 09:23:11.250 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate Core {5.3.7.Final}
+16-09-2020 09:23:11.252 [main] INFO  org.hibernate.cfg.Environment.<clinit> - HHH000206: hibernate.properties not found
+16-09-2020 09:23:11.340 [main] INFO  o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16-09-2020 09:23:11.448 [main] INFO  org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16-09-2020 09:23:11.929 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+16-09-2020 09:23:12.118 [main] INFO  o.h.h.i.QueryTranslatorFactoryInitiator.initiateService - HHH000397: Using ASTQueryTranslatorFactory
+16-09-2020 09:23:12.513 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16-09-2020 09:23:13.036 [main] INFO  o.a.coyote.http11.Http11NioProtocol.log - Starting ProtocolHandler ["http-nio-8088"]
+16-09-2020 09:23:13.055 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8088 (http) with context path ''
+16-09-2020 09:23:13.057 [main] INFO  co.jp.HRMApplication.logStarted - Started HRMApplication in 4.805 seconds (JVM running for 6.08)
+16-09-2020 09:23:13.249 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16-09-2020 09:23:13.249 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+16-09-2020 09:23:13.265 [http-nio-8088-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 15 ms
+16-09-2020 18:13:41.958 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool.run - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h14m26s981ms865µs100ns).

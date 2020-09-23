@@ -14,13 +14,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = User.TABLE_NAME)
 @Getter
 @Setter
+@RequiredArgsConstructor
+@NoArgsConstructor
+//@AllArgsConstructor
+@Data
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,19 +35,19 @@ public class User implements Serializable {
 	private Integer id;
 
 	@Column(name = "name", nullable = false)
-	private String name;
+	@NonNull private String name;
 
 	@Column(name = "phone")
-	private String phone;
+	@NonNull private String phone;
 
 	@Column(name = "email", nullable = false)
-	private String email;
+	@NonNull private String email;
 
 	@Column(name = "password", nullable = false)
-	private String password;
+	@NonNull private String password;
 
 	@Column(name = "start_date")
-	private Timestamp startDate;
+	@NonNull private Timestamp startDate;
 
 	@Column(name = "end_date")
 	private Timestamp endDate;
@@ -68,13 +71,13 @@ public class User implements Serializable {
 	private Timestamp codeEnd;
 	
 	@Column(name = "delete_flag")
-	private Integer deleteFlag;
+	@NonNull  private Integer deleteFlag;
 
 	@Column(name = "display_order")
-	private long displayOrder;
+	@NonNull private long displayOrder;
 	
 	@Column(name = "status")
-	private Integer status;
+	@NonNull private Integer status;
 
 	@Column(name = "roles_id")
 	private Integer rolesId;
