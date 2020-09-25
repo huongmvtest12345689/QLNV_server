@@ -1,11 +1,13 @@
 package co.jp.api.controller;
 
+import co.jp.api.cmn.Constants;
 import co.jp.api.cmn.ResourceResponse;
 import co.jp.api.entity.User;
 import co.jp.api.model.CellInfoDTO;
 import co.jp.api.model.request.LoginResDto;
 import co.jp.api.model.request.ResetPasswordDto;
 import co.jp.api.model.response.ResetPasswordResDto;
+import co.jp.api.model.response.UserInfoResDto;
 import co.jp.api.service.UserApiService;
 import co.jp.api.util.CookieUtil;
 import co.jp.api.util.TokenJWTUtils;
@@ -61,7 +63,20 @@ public class UserApiController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("jwt",jwt);
         map.put("cookie",cookie);
-        return new ResourceResponse(200, "Đăng nhập thành công", userLogin);
+        map.put("user",userLogin);
+        return new ResourceResponse(200, "Đăng nhập thành công", map);
+    }
+
+    @GetMapping("info-login")
+    public ResourceResponse getInfoLogin(HttpServletRequest httpServletRequest) {
+        String jwt = CookieUtil.getValueCookie(httpServletRequest, jwtTokenCookieName);
+        String email = tokenJWTUtils.getUserNameFromJwtToken(jwt);
+        User userLogin = userApiService.findByEmail(email);
+        UserInfoResDto userInfo = new UserInfoResDto();
+        userInfo.setName(userLogin.getName());
+        userInfo.setEmail(userLogin.getEmail());
+        userInfo.setRoleName(Constants.ROLE_NAME.get(userLogin.getRolesId()));
+        return new ResourceResponse(200, "thong tin user", userInfo);
     }
 
     @GetMapping("random")

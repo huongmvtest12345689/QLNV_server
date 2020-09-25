@@ -1,6 +1,11 @@
 package co.jp.api.cmn;
 
+import co.jp.api.model.CellInfoDTO;
+import org.apache.poi.ss.usermodel.CellType;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Constants {
 
@@ -28,6 +33,12 @@ public class Constants {
 	public static final String MSG_I00001 = "Change password success";
 	public static final String MSG_I00002 = "Change password failse";
 	public static final String MSG_I00003 = "Code out of date";
+
+	public static final Map<Integer, String> ROLE_NAME = new HashMap<Integer, String>() {{
+		put(1, "ROLES_MEMBER");
+		put(2, "ROLES_ADMIN");
+		put(3, "ROLES_GUEST");
+	}};
 
 	public static int NUMBER_0 = 0;
 	public static int NUMBER_1 = 1;
