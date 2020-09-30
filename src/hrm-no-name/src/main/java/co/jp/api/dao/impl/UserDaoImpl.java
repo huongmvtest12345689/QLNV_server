@@ -1,8 +1,10 @@
 package co.jp.api.dao.impl;
 
+import co.jp.api.cmn.Constants;
 import co.jp.api.dao.UserDao;
 import co.jp.api.entity.User;
 import co.jp.api.model.request.UserResDto;
+import co.jp.api.model.request.UserUpdateResDto;
 import co.jp.api.util.AppUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.awt.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +89,31 @@ public class UserDaoImpl implements UserDao {
         List<User> userList = this.entityManager.createNativeQuery(sql, User.class).getResultList();
         return userList;
     }
+
+    @Override
+    public Boolean update(UserUpdateResDto userUpdateResDto){
+        String sql = AppUtils.sqlExcute("cmn/USER_07_USER_UPDATE.sql");
+        Query query = this.entityManager.createNativeQuery(sql, User.class);
+        query.setParameter("name", userUpdateResDto.getName());
+        query.setParameter("phone", userUpdateResDto.getPhone());
+        query.setParameter("email", userUpdateResDto.getEmail());
+        query.setParameter("roleId", userUpdateResDto.getRoleId());
+        return query.executeUpdate() != 0;
+    }
+
+    @Override
+    public Boolean delete(Integer userId){
+        String sql = AppUtils.sqlExcute("cmn/USER_08_DELETE_USER_BY_EMAIL.sql");
+        Query query = this.entityManager.createNativeQuery(sql, User.class);
+        query.setParameter("userId", userId);
+        return query.executeUpdate() != 0;
+    }
+
+    /**
+     *
+     * @param ObjectInput
+     * @param query
+     */
 
     private void getValueObject (Object ObjectInput, Query query) {
         ObjectMapper objectMapper = new ObjectMapper();

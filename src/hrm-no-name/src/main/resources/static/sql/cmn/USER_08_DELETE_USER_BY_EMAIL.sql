@@ -1,0 +1,1 @@
+delete from user u where u.id = :userId

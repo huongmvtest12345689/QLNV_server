@@ -2,11 +2,15 @@ package co.jp.api.service.impl;
 
 import co.jp.api.cmn.Constants;
 import co.jp.api.dao.UserDao;
+import co.jp.api.entity.Country;
 import co.jp.api.entity.User;
 import co.jp.api.model.EmailDTO;
 import co.jp.api.model.request.ResetPasswordDto;
 import co.jp.api.model.request.UserResDto;
+import co.jp.api.model.request.UserUpdateResDto;
+import co.jp.api.model.response.CountryResDto;
 import co.jp.api.model.response.ResetPasswordResDto;
+import co.jp.api.model.response.UserAllResDto;
 import co.jp.api.service.MailApiService;
 import co.jp.api.service.UserApiService;
 import co.jp.api.util.AppUtils;
@@ -45,8 +49,22 @@ public class UserApiServiceImpl implements UserApiService {
         return userDao.importUserFromFile(userResDtoList);
     }
 
-    public List<User> findAll() {
-        return userDao.findAll();
+    public List<UserAllResDto> findAll() {
+        List<UserAllResDto> userAllResDtoList = new ArrayList<>();
+        List<User> userList = userDao.findAll();
+        if (userList.size() > 0) {
+            for (User user : userList) {
+                UserAllResDto userAllResDto = new UserAllResDto();
+                userAllResDto.setEmail(user.getEmail());
+                userAllResDto.setId(user.getId());
+                userAllResDto.setName(user.getName());
+                userAllResDto.setPhone(user.getPhone());
+                userAllResDto.setRoleName(user.getRolesSet().getRolesName());
+                userAllResDto.setRoleId(user.getRolesId());
+                userAllResDtoList.add(userAllResDto);
+            }
+        }
+        return userAllResDtoList;
     }
 
     public User findByEmail(String email) {
@@ -117,4 +135,9 @@ public class UserApiServiceImpl implements UserApiService {
 
         return diff.toHours() >= Constants.EXPIRE_TOKEN_AFTER_HOURS;
     }
+
+    public Boolean update(UserUpdateResDto userUpdateResDto) {
+        return userDao.update(userUpdateResDto);
+    }
+    public Boolean delete(Integer userId) { return userDao.delete(userId); }
 }

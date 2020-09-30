@@ -94,7 +94,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                .antMatchers("/api/user/login", "/api/user/forgot-password").permitAll()
+                .antMatchers("/api/auth/login", "/api/auth/reset-password", "/api/auth/forgot-password").permitAll()
                 .antMatchers( "/api/member/**").hasAnyAuthority("ROLES_MEMBER", "ROLES_ADMIN")
                 .antMatchers("/api/admin/**").hasAuthority("ROLES_ADMIN")
                 .anyRequest().authenticated();

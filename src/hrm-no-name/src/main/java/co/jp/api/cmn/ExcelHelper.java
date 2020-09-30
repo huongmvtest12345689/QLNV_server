@@ -2,6 +2,7 @@ package co.jp.api.cmn;
 
 import co.jp.api.entity.User;
 import co.jp.api.model.CellInfoDTO;
+import co.jp.api.model.response.UserAllResDto;
 import co.jp.api.service.ExcelApiService;
 import co.jp.api.service.UserApiService;
 import co.jp.api.util.AppContants;
@@ -46,7 +47,7 @@ public class ExcelHelper {
         Map<String, List<User>> userMap = new HashMap<>();
         Workbook workbook = new XSSFWorkbook(is);
         Iterator<Sheet> sheetIterator = workbook.sheetIterator();
-        List<User> userListDb = userApiService.findAll();
+        List<UserAllResDto> userListDb = userApiService.findAll();
 
         while (sheetIterator.hasNext()) {
             Sheet sheet = sheetIterator.next();
@@ -207,7 +208,7 @@ public class ExcelHelper {
                                  CellType cellTypeValidate,
                                  CellType cellType,
                                  List<User> userListImport,
-                                 List<User> userListDb) {
+                                 List<UserAllResDto> userListDb) {
 
         if (cellTypeValidate != cellType){
             return AppUtils.getMessageVariable(rowColumn, columnName, sheetName, MessageContants.MSG_021);
