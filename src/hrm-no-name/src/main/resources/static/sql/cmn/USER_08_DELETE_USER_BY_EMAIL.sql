@@ -1,1 +1,1 @@
-delete from user u where u.id = :userId
+DELETE from user WHERE email = :email

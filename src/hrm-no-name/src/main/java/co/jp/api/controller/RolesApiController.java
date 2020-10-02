@@ -28,7 +28,6 @@ public class RolesApiController {
             return new ResourceResponse(rolesResDtoList);
         }
     }
-
     @GetMapping("find-role-name")
     public ResourceResponse findByRoleName(@RequestParam("roleName") String roleName) {
         return new ResourceResponse(rolesApiService.findByRoleName(roleName));

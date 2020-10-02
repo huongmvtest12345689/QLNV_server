@@ -72,11 +72,11 @@ public class User implements Serializable {
 	@Column(name = "status")
 	private Integer status;
 
-	@Column(name = "roles_id")
-	private Integer rolesId;
+	@Column(name = "role_id")
+	private Integer roleId;
 
 	@ManyToOne
-	@JoinTable(name = "roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+	@JoinTable(name = "roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Roles rolesSet;
 
 	public void setFieldValue(CellInfoDTO cellInfoDTO, String rawValue) throws NoSuchFieldException, IllegalAccessException {

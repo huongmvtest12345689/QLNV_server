@@ -2,13 +2,11 @@ package co.jp.api.service.impl;
 
 import co.jp.api.cmn.Constants;
 import co.jp.api.dao.UserDao;
-import co.jp.api.entity.Country;
 import co.jp.api.entity.User;
 import co.jp.api.model.EmailDTO;
 import co.jp.api.model.request.ResetPasswordDto;
-import co.jp.api.model.request.UserResDto;
-import co.jp.api.model.request.UserUpdateResDto;
-import co.jp.api.model.response.CountryResDto;
+import co.jp.api.model.request.UserReqDto;
+import co.jp.api.model.request.UserUpdateReqDto;
 import co.jp.api.model.response.ResetPasswordResDto;
 import co.jp.api.model.response.UserAllResDto;
 import co.jp.api.service.MailApiService;
@@ -35,18 +33,17 @@ public class UserApiServiceImpl implements UserApiService {
     private MailApiService mailApiService;
 
     public Boolean importFileExcel(List<User> listUsers){
-        List<UserResDto> userResDtoList = new ArrayList<>();
+        List<UserReqDto> userReqDtoList = new ArrayList<>();
         for (User user : listUsers) {
-            UserResDto userResDto = new UserResDto();
-            userResDto.setName(user.getName());
-            userResDto.setEmail(user.getEmail());
-            userResDto.setPassword(user.getPassword());
-            userResDto.setRolesId(user.getRolesId());
-            userResDto.setStatus(user.getStatus());
-            userResDto.setDisplayOrder((long) 0);
-            userResDtoList.add(userResDto);
+            UserReqDto userReqDto = new UserReqDto();
+            userReqDto.setName(user.getName());
+            userReqDto.setEmail(user.getEmail());
+            userReqDto.setPhone(user.getPhone());
+            userReqDto.setPassword(user.getPassword());
+            userReqDto.setRoleId(user.getRoleId());
+            userReqDtoList.add(userReqDto);
         }
-        return userDao.importUserFromFile(userResDtoList);
+        return userDao.importUserFromFile(userReqDtoList);
     }
 
     public List<UserAllResDto> findAll() {
@@ -60,7 +57,7 @@ public class UserApiServiceImpl implements UserApiService {
                 userAllResDto.setName(user.getName());
                 userAllResDto.setPhone(user.getPhone());
                 userAllResDto.setRoleName(user.getRolesSet().getRolesName());
-                userAllResDto.setRoleId(user.getRolesId());
+                userAllResDto.setRoleId(user.getRoleId());
                 userAllResDtoList.add(userAllResDto);
             }
         }
@@ -136,8 +133,17 @@ public class UserApiServiceImpl implements UserApiService {
         return diff.toHours() >= Constants.EXPIRE_TOKEN_AFTER_HOURS;
     }
 
-    public Boolean update(UserUpdateResDto userUpdateResDto) {
-        return userDao.update(userUpdateResDto);
+    public Boolean update(UserUpdateReqDto userUpdateReqDto) {
+        return userDao.update(userUpdateReqDto);
     }
-    public Boolean delete(Integer userId) { return userDao.delete(userId); }
+    public Boolean delete(String email) { return userDao.delete(email); }
+    public Boolean deleteMulti(List<String> listEmail) { return userDao.deleteMulti(listEmail); }
+    public Boolean save(UserReqDto userReqDto) {
+        User user = userDao.findByEmail(userReqDto.getEmail());
+        if (user != null ) {
+            return false;
+        }
+        userReqDto.setPassword(AppUtils.encode(userReqDto.getPassword()));
+        return userDao.save(userReqDto);
+    }
 }

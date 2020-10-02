@@ -37,9 +37,9 @@ public class ExcelHelper {
         put(0, new CellInfoDTO("id", CellType.NUMERIC));
         put(1, new CellInfoDTO("name", CellType.STRING));
         put(2, new CellInfoDTO("email", CellType.STRING));
-        put(3, new CellInfoDTO("password", CellType.STRING));
-        put(4, new CellInfoDTO("rolesId", CellType.NUMERIC));
-        put(5, new CellInfoDTO("status", CellType.NUMERIC));
+        put(3, new CellInfoDTO("phone", CellType.NUMERIC));
+        put(4, new CellInfoDTO("password", CellType.STRING));
+        put(5, new CellInfoDTO("rolesId", CellType.NUMERIC));
     }};
 
     public Map<String, List<User>> mapDataObject(InputStream is) throws IOException, NoSuchFieldException, IllegalAccessException {
@@ -83,12 +83,12 @@ public class ExcelHelper {
                     CellInfoDTO cellInfo = COLUMN_MAP.get(cellIdx);
                     String formatCurrentCell = dataFormatter.formatCellValue(currentCell);
                     String msgError = validateColumn(rowNumber, cellInfo.getName(), sheetName, formatCurrentCell, cellInfo.getCellType(), cellType, userListImport, userListDb);
-                    if (msgError == null) {
+                    if (msgError != null) {
                         /*user.setFieldValue(cellInfo, formatCurrentCell);*/
-                        user = setValue(cellInfo.getName(), formatCurrentCell, user);
-                    } else {
                         listMessage.add(msgError);
+//                        user = setValue(cellInfo.getName(), formatCurrentCell, user);
                     }
+                    user = setValue(cellInfo.getName(), formatCurrentCell, user);
 
 //                    switch (cellIdx) {
 //                        case 0:
@@ -192,10 +192,10 @@ public class ExcelHelper {
                 user.setPassword(AppUtils.encode(columnValue));
                 break;
             case "rolesId":
-                user.setRolesId(Integer.parseInt(columnValue));
+                user.setRoleId(Integer.parseInt(columnValue));
                 break;
-            case "status":
-                user.setStatus(Integer.parseInt(columnValue));
+            case "phone":
+                user.setPhone(columnValue);
                 break;
         }
         return user;

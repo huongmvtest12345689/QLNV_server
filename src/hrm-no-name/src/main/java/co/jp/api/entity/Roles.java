@@ -21,14 +21,17 @@ public class Roles implements Serializable {
 	@Column(name = "id", nullable = false)
 	private Integer id;
 
-	@Column(name = "roles_name", nullable = false)
+	@Column(name = "role_name", nullable = false)
 	private String rolesName;
 
-	@Column(name = "roles_id", nullable = false)
+	@Column(name = "role_id", nullable = false)
 	private Integer rolesId;
 
 	@Column(name = "status", nullable = false)
 	private Integer status;
+
+	@Column(name = "permission_ids", nullable = false)
+	private String permissionIds;
 
 	@OneToMany(mappedBy = "rolesSet")
 	private Set<User> users;

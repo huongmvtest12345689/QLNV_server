@@ -3,7 +3,7 @@ package co.jp.api.model.request;
 import lombok.Data;
 
 @Data
-public class LoginResDto {
+public class LoginReqDto {
     private String email;
     private String password;
 }

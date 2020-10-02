@@ -3,11 +3,10 @@ package co.jp.api.model.request;
 import lombok.Data;
 
 @Data
-public class UserResDto {
+public class UserReqDto {
     private String name;
     private String email;
+    private String phone;
     private String password;
-    private Integer rolesId;
-    private Integer status;
-    private Long displayOrder;
+    private Integer roleId;
 }

@@ -3,7 +3,7 @@ package co.jp.api.controller;
 import co.jp.api.cmn.Constants;
 import co.jp.api.cmn.ResourceResponse;
 import co.jp.api.entity.User;
-import co.jp.api.model.request.LoginResDto;
+import co.jp.api.model.request.LoginReqDto;
 import co.jp.api.model.request.ResetPasswordDto;
 import co.jp.api.model.response.ResetPasswordResDto;
 import co.jp.api.model.response.UserInfoResDto;
@@ -42,7 +42,7 @@ public class AuthApiController {
     private static final Map<String, String> credentials = new HashMap<>();
 
     @PostMapping("login")
-    public ResourceResponse authenticateUser(@Valid @RequestBody LoginResDto loginRequest, HttpServletResponse httpServletResponse) {
+    public ResourceResponse authenticateUser(@Valid @RequestBody LoginReqDto loginRequest, HttpServletResponse httpServletResponse) {
         // Xác thực từ username và password.
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -72,7 +72,7 @@ public class AuthApiController {
         UserInfoResDto userInfo = new UserInfoResDto();
         userInfo.setName(userLogin.getName());
         userInfo.setEmail(userLogin.getEmail());
-        userInfo.setRoleName(Constants.ROLE_NAME.get(userLogin.getRolesId()));
+        userInfo.setRoleName(Constants.ROLE_NAME.get(userLogin.getRoleId()));
         return new ResourceResponse(200, "thong tin user", userInfo);
     }
 

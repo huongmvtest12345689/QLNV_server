@@ -1,10 +1,9 @@
 package co.jp.api.dao.impl;
 
-import co.jp.api.cmn.Constants;
 import co.jp.api.dao.UserDao;
 import co.jp.api.entity.User;
-import co.jp.api.model.request.UserResDto;
-import co.jp.api.model.request.UserUpdateResDto;
+import co.jp.api.model.request.UserReqDto;
+import co.jp.api.model.request.UserUpdateReqDto;
 import co.jp.api.util.AppUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.awt.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -49,10 +47,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean importUserFromFile(List<UserResDto> userResDtoList) {
-        String sql = AppUtils.sqlExcute("cmn/USER_02_INSERT_MULTI_RECORD.sql");
+    public Boolean importUserFromFile(List<UserReqDto> userReqDtoList) {
+        String sql = AppUtils.sqlExcute("cmn/USER_02_INSERT_USER.sql");
         Query query = this.entityManager.createNativeQuery(sql, User.class);
-        for (UserResDto u : userResDtoList) {
+        for (UserReqDto u : userReqDtoList) {
             getValueObject(u, query);
             query.executeUpdate();
         }
@@ -91,21 +89,37 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean update(UserUpdateResDto userUpdateResDto){
+    public Boolean update(UserUpdateReqDto userUpdateReqDto){
         String sql = AppUtils.sqlExcute("cmn/USER_07_USER_UPDATE.sql");
         Query query = this.entityManager.createNativeQuery(sql, User.class);
-        query.setParameter("name", userUpdateResDto.getName());
-        query.setParameter("phone", userUpdateResDto.getPhone());
-        query.setParameter("email", userUpdateResDto.getEmail());
-        query.setParameter("roleId", userUpdateResDto.getRoleId());
+        query.setParameter("name", userUpdateReqDto.getName());
+        query.setParameter("phone", userUpdateReqDto.getPhone());
+        query.setParameter("email", userUpdateReqDto.getEmail());
+        query.setParameter("roleId", userUpdateReqDto.getRoleId());
         return query.executeUpdate() != 0;
     }
 
     @Override
-    public Boolean delete(Integer userId){
+    public Boolean delete(String email){
         String sql = AppUtils.sqlExcute("cmn/USER_08_DELETE_USER_BY_EMAIL.sql");
         Query query = this.entityManager.createNativeQuery(sql, User.class);
-        query.setParameter("userId", userId);
+        query.setParameter("email", email);
+        return query.executeUpdate() != 0;
+    }
+
+    @Override
+    public Boolean deleteMulti(List<String> listEmail){
+        String sql = AppUtils.sqlExcute("cmn/USER_09_DELETE_MULTI_USER_BY_EMAIL.sql");
+        Query query = this.entityManager.createNativeQuery(sql, User.class);
+        query.setParameter("listEmail", listEmail);
+        return query.executeUpdate() != 0;
+    }
+
+    @Override
+    public Boolean save(UserReqDto userReqDto){
+        String sql = AppUtils.sqlExcute("cmn/USER_02_INSERT_USER.sql");
+        Query query = this.entityManager.createNativeQuery(sql, User.class);
+        getValueObject(userReqDto, query);
         return query.executeUpdate() != 0;
     }
 

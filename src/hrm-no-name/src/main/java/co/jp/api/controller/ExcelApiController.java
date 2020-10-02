@@ -1,7 +1,7 @@
 package co.jp.api.controller;
 
 import co.jp.api.cmn.ResourceResponse;
-import co.jp.api.model.request.ExcelFileResDto;
+import co.jp.api.model.request.ExcelFileReqDto;
 import co.jp.api.service.ExcelApiService;
 import co.jp.api.util.MessageContants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +16,16 @@ public class ExcelApiController {
     private ExcelApiService excelApiService;
 
     @RequestMapping(value = { "excel" }, method = RequestMethod.POST)
-    public ResourceResponse getListCountry(@RequestBody ExcelFileResDto uploadFileDTO){
+    public ResourceResponse getListCountry(@RequestBody ExcelFileReqDto uploadFileDTO){
         if (!uploadFileDTO.getBase64().equals("")) {
             byte[] decodeBase64 = Base64.getDecoder().decode(uploadFileDTO.getBase64().getBytes());
             if (excelApiService.saveFileImport(decodeBase64)){
-                return new ResourceResponse(MessageContants.MSG_018);
+                return new ResourceResponse(200,MessageContants.MSG_018);
             } else {
                 return new ResourceResponse(400, MessageContants.MSG_023, MessageContants.messageImport);
             }
         } else {
-            return new ResourceResponse(MessageContants.MSG_019);
+            return new ResourceResponse(400,MessageContants.MSG_019);
         }
     }
 }

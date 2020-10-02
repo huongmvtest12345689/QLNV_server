@@ -1,4 +1,4 @@
 SELECT
     *
 FROM roles r
-WHERE r.roles_name = :roleName
+WHERE r.role_name = :roleName
